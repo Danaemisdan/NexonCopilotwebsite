@@ -293,7 +293,7 @@ export default function WaitlistExperience(): ReactElement {
                                 <>
                                     <div className="mb-8 text-center flex flex-col items-center">
                                         <div className="flex flex-col items-center justify-center gap-4 mb-6">
-                                            <Image src="/40.png" alt="Nexon Copilot Logo" width={64} height={64} className="opacity-90 drop-shadow-[0_0_15px_rgba(163,230,53,0.3)] object-contain" />
+                                            <Image src="/logo.svg" alt="Nexon Copilot Logo" width={64} height={64} className="opacity-90 drop-shadow-[0_0_15px_rgba(163,230,53,0.3)] object-contain" />
                                             <div className="px-3 py-1 text-[10px] font-semibold tracking-widest uppercase text-white/80 border border-white/20 rounded-full bg-white/5">
                                                 Public Beta
                                             </div>

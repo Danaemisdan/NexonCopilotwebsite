@@ -34,7 +34,7 @@ export function Preloader() {
                             transition={{ duration: 0.8, ease: "backOut", delay: 0.2 }}
                         >
                             <Image
-                                src="/40.png"
+                                src="/logo.svg"
                                 alt="Nexon Copilot Logo"
                                 width={120}
                                 height={120}
