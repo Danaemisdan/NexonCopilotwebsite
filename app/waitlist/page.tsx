@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react"
-
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import {
     Scene,
     PerspectiveCamera,
@@ -13,10 +14,8 @@ import {
     Mesh,
     AdditiveBlending,
     DoubleSide,
-} from "three"
-import type { ReactElement } from "react"
-import { useState, useEffect, useRef } from "react"
-
+} from "three";
+import type { ReactElement } from "react";
 const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
     ({ className, type, ...props }, ref) => {
         return (
@@ -280,14 +279,25 @@ export default function WaitlistExperience(): ReactElement {
             {/* Content Layer */}
             <div className="relative z-10 w-full max-w-md px-4">
                 {/* Waitlist Card */}
-                <div className="relative">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="relative"
+                >
                     <div className="relative backdrop-blur-xl bg-black/60 border border-white/20 rounded-3xl p-8 w-full shadow-2xl">
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
                         <div className="relative z-10">
                             {!isSubmitted ? (
                                 <>
-                                    <div className="mb-8 text-center">
+                                    <div className="mb-8 text-center flex flex-col items-center">
+                                        <div className="flex flex-col items-center justify-center gap-4 mb-6">
+                                            <Image src="/logo.svg" alt="Nexon Copilot Logo" width={64} height={64} className="opacity-90 drop-shadow-[0_0_15px_rgba(255,87,34,0.5)]" />
+                                            <div className="px-3 py-1 text-[10px] font-semibold tracking-widest uppercase bg-primary/20 text-primary border border-primary/30 rounded-full">
+                                                Public Beta
+                                            </div>
+                                        </div>
                                         <h1 className="text-4xl font-light text-white mb-4 tracking-wide"> Join the waitlist </h1>
                                         <p className="text-white/70 text-base leading-relaxed font-light">
                                             Get early access to Nexon Copilot - the ultimate
@@ -361,7 +371,7 @@ export default function WaitlistExperience(): ReactElement {
                     </div>
 
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/10 to-purple-600/10 blur-xl scale-110 -z-10" />
-                </div>
+                </motion.div>
             </div>
         </main>
     )
