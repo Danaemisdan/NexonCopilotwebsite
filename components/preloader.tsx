@@ -34,11 +34,12 @@ export function Preloader() {
                             transition={{ duration: 0.8, ease: "backOut", delay: 0.2 }}
                         >
                             <Image
-                                src="/logo.svg"
+                                src="/40.png"
                                 alt="Nexon Copilot Logo"
                                 width={120}
                                 height={120}
                                 priority
+                                className="w-16 h-16 sm:w-[120px] sm:h-[120px] object-contain"
                             />
                         </motion.div>
 
@@ -49,7 +50,7 @@ export function Preloader() {
                             transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
                             className="overflow-hidden"
                         >
-                            <span className="text-6xl font-bold tracking-tight text-white whitespace-nowrap pl-4">
+                            <span className="text-3xl sm:text-6xl font-bold tracking-tight text-white whitespace-nowrap pl-2 sm:pl-4">
                                 Nexon Copilot.
                             </span>
                         </motion.div>

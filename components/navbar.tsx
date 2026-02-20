@@ -92,7 +92,7 @@ export function Navbar() {
 
                         <div className="flex flex-col gap-4 w-full px-12 mt-4">
                             <Link href="/waitlist" className="w-full py-3 text-center rounded-full border border-primary/30 text-text-main">Sign In</Link>
-                            <Link href="/waitlist" className="w-full py-3 text-center rounded-full bg-primary text-white shadow-[0_0_15px_rgba(124,58,237,0.4)]">Get Started</Link>
+                            <Link href="/waitlist" className="w-full py-3 text-center rounded-full bg-[#7c3aed] hover:bg-[#6d28d9] text-white transition-colors shadow-[0_0_15px_rgba(124,58,237,0.4)]">Get Started</Link>
                         </div>
                     </nav>
                 </div>
