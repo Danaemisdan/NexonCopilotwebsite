@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nexon Go Pilot | AI-Powered Revenue Operating System",
+  title: "Nexon Copilot | AI-Powered Revenue Operating System",
   description: "Automate businesses' entire CRM process with AI.",
 };
 

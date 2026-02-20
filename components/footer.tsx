@@ -47,7 +47,7 @@ export function Footer() {
 
                 <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-text-muted text-sm text-center md:text-left">
-                        &copy; {new Date().getFullYear()} Nexon Go Pilot. All rights reserved.
+                        &copy; {new Date().getFullYear()} Nexon Copilot. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
                         <SocialLink href="#" label="Twitter" />

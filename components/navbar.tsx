@@ -35,7 +35,7 @@ export function Navbar() {
                     <Link href="/" className="flex items-center gap-3 group">
                         <Image
                             src="/logo.svg"
-                            alt="Nexon Go Pilot Logo"
+                            alt="Nexon Copilot Logo"
                             width={96}
                             height={96}
                             className="transition-transform group-hover:scale-105"
