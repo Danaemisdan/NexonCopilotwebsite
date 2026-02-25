@@ -264,12 +264,12 @@ export function CinematicVision() {
                         key={currentSlide.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute inset-0 flex flex-col items-center justify-center w-full z-30 bg-[#111111]"
+                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#7c3aed]"
                     >
-                        <div className="flex flex-col items-center justify-center -mt-16">
-                            <div className="flex items-center justify-center overflow-hidden mb-10">
-                                {/* Logo Animation (from Preloader) */}
+                        <div className="flex flex-col items-center justify-center -mt-8">
+                            <div className="flex items-center justify-center overflow-hidden">
+                                {/* Logo Animation */}
                                 <motion.div
                                     initial={{ scale: 0, opacity: 0, rotate: -90 }}
                                     animate={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -281,53 +281,32 @@ export function CinematicVision() {
                                         width={180}
                                         height={180}
                                         priority
-                                        className="w-24 h-24 sm:w-[150px] sm:h-[150px] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                                        className="w-24 h-24 sm:w-[150px] sm:h-[150px] object-contain drop-shadow-xl"
                                     />
                                 </motion.div>
 
-                                {/* Text Reveal Animation (from Preloader) */}
+                                {/* Text Reveal Animation */}
                                 <motion.div
                                     initial={{ width: 0, opacity: 0 }}
                                     animate={{ width: "auto", opacity: 1 }}
-                                    transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                    transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
                                     className="overflow-hidden"
                                 >
-                                    <span className="text-6xl md:text-[8rem] font-bold tracking-tight text-white whitespace-nowrap pl-4 sm:pl-8">
-                                        Nexon <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500">Copilot.</span>
+                                    <span className="text-4xl sm:text-6xl md:text-[6rem] font-bold tracking-tight text-white whitespace-nowrap pl-4 sm:pl-6 leading-none">
+                                        Nexon Copilot.
                                     </span>
                                 </motion.div>
                             </div>
 
+                            {/* Wait 2.5s then fade in the tag line mimicking a loading freeze */}
                             <motion.p
                                 initial={{ opacity: 0, filter: "blur(10px)" }}
                                 animate={{ opacity: 1, filter: "blur(0px)" }}
-                                transition={{ duration: 1, delay: 1.5 }}
-                                className="text-2xl md:text-3xl text-[#a3e635] font-semibold tracking-tight text-center max-w-3xl mb-12 px-4 drop-shadow-md"
+                                transition={{ duration: 1.5, delay: 2.5 }}
+                                className="mt-8 text-xl sm:text-3xl text-[#a3e635] font-semibold tracking-tight text-center max-w-2xl px-4 drop-shadow-md"
                             >
                                 Stop renting attention. Start owning growth.
                             </motion.p>
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 2.2 }}
-                                className="flex flex-col sm:flex-row gap-6 items-center"
-                            >
-                                <button
-                                    onClick={() => setCurrentIndex(0)}
-                                    className="px-8 py-4 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white/40 transition-all flex items-center gap-2 text-lg backdrop-blur-md"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
-                                    Replay Vision
-                                </button>
-                                <a
-                                    href="/waitlist"
-                                    className="px-10 py-4 bg-[#7c3aed] text-white rounded-full font-bold text-lg hover:bg-[#6d28d9] hover:scale-105 hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-all flex items-center gap-2"
-                                >
-                                    Join the Platform
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                                </a>
-                            </motion.div>
                         </div>
                     </motion.div>
                 )}
