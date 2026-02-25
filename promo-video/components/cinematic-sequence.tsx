@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
+import { GlowingCard } from "@/components/ui/glowing-card"
+import { BackgroundBeams } from "@/components/ui/background-beams"
 
 // The sequence of text/screens to flash through
 const sequence = [
@@ -10,7 +12,15 @@ const sequence = [
     { id: "s2", text: "Nurture Leads.", duration: 800, type: "flash" },
     { id: "s3", text: "Fulfill Orders.", duration: 800, type: "flash" },
     { id: "s4", text: "Get Paid.", duration: 1200, type: "flash" },
-    { id: "s5", text: "All on autopilot.", duration: 1500, type: "hero", subtitle: "The manual era is over." },
+    { id: "s5", text: "All on autopilot.", duration: 2000, type: "hero", subtitle: "We execute. We don't suggest." },
+
+    // The 5 Pillars from Thingstoremember.md
+    { id: "p1", type: "pillar", title: "Omni-Channel Scale", desc: "Manage up to 100 accounts per platform. Surround the entire market.", duration: 3000 },
+    { id: "p2", type: "pillar", title: "AI Creative Studio", desc: "Raw footage to viral clips. Fully automated creation and distribution.", duration: 3000 },
+    { id: "p3", type: "pillar", title: "Autonomous Lead Gen", desc: "Identify prospects. Start conversations. Drive sales 24/7.", duration: 3000 },
+    { id: "p4", type: "pillar", title: "Authority Engine", desc: "Build owned media, SEO-rich networks, and digital real estate.", duration: 3000 },
+    { id: "p5", type: "pillar", title: "The Apex Hub", desc: "Your central brand ecosystem. Traffic turns into revenue—not clicks.", duration: 3000 },
+
     { id: "s6", type: "reveal" }
 ]
 
@@ -32,18 +42,25 @@ export function CinematicSequence() {
 
     const currentSlide = sequence[currentIndex]
 
+    // Whether to show the complex background
+    const showBackground = currentSlide.type === "pillar" || currentSlide.type === "reveal" || currentSlide.type === "hero"
+
     return (
         <div className="fixed inset-0 bg-black overflow-hidden flex flex-col items-center justify-center">
 
-            {/* Background ambient glow that appears during the reveal */}
+            {/* Background ambient glow and Beams from 21st.dev/Aceternity */}
             <AnimatePresence>
-                {currentSlide.type === "reveal" && (
+                {showBackground && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 2 }}
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.15)_0%,transparent_60%)] pointer-events-none"
-                    />
+                        transition={{ duration: 1.5 }}
+                        className="absolute inset-0 z-0 pointer-events-none"
+                    >
+                        <BackgroundBeams />
+                        <div className="absolute inset-0 bg-black/40 z-10" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.15)_0%,transparent_80%)] z-10" />
+                    </motion.div>
                 )}
             </AnimatePresence>
 
@@ -53,11 +70,11 @@ export function CinematicSequence() {
                 {currentSlide.type === "flash" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                        initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="absolute flex items-center justify-center w-full"
+                        exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="absolute flex items-center justify-center w-full z-10"
                     >
                         <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-white">
                             {currentSlide.text}
@@ -69,18 +86,47 @@ export function CinematicSequence() {
                 {currentSlide.type === "hero" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -40, filter: "blur(20px)" }}
+                        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute flex flex-col items-center justify-center w-full text-center"
+                        className="absolute flex flex-col items-center justify-center w-full text-center z-10"
                     >
-                        <h1 className="text-7xl md:text-[10rem] font-bold tracking-tighter text-[#a3e635] leading-none mb-4">
+                        <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a3e635] via-white to-[#7c3aed] leading-none mb-6">
                             {currentSlide.text}
                         </h1>
-                        <p className="text-3xl md:text-5xl text-neutral-500 font-medium tracking-tight">
+                        <p className="text-3xl md:text-5xl text-neutral-400 font-medium tracking-tight">
                             {currentSlide.subtitle}
                         </p>
+                    </motion.div>
+                )}
+
+                {/* 21st.dev GLOWING CARDS FOR PILLARS */}
+                {currentSlide.type === "pillar" && (
+                    <motion.div
+                        key={currentSlide.id}
+                        initial={{ opacity: 0, scale: 0.8, y: 50, rotateX: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                        exit={{ opacity: 0, scale: 1.2, filter: "blur(15px)", y: -50 }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute flex items-center justify-center w-full max-w-4xl px-4 z-20"
+                        style={{ perspective: "1000px" }}
+                    >
+                        <GlowingCard className="w-full relative overflow-hidden bg-black/60 backdrop-blur-xl border border-white/5 p-12 md:p-20 text-center rounded-[3rem] shadow-[0_0_50px_rgba(124,58,237,0.2)]">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.5 }}
+                            >
+                                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                                    {currentSlide.title}
+                                </h2>
+                                <div className="h-1 w-24 bg-gradient-to-r from-[#a3e635] to-[#7c3aed] mx-auto mb-8 rounded-full" />
+                                <p className="text-2xl md:text-4xl text-neutral-300 font-medium leading-tight">
+                                    {currentSlide.desc}
+                                </p>
+                            </motion.div>
+                        </GlowingCard>
                     </motion.div>
                 )}
 
@@ -91,7 +137,7 @@ export function CinematicSequence() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                        className="absolute flex flex-col items-center justify-center w-full z-10"
+                        className="absolute flex flex-col items-center justify-center w-full z-30"
                     >
                         <motion.div
                             initial={{ rotate: -90, scale: 0 }}
@@ -99,7 +145,7 @@ export function CinematicSequence() {
                             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.5 }}
                             className="mb-10 relative"
                         >
-                            <div className="absolute inset-0 bg-[#a3e635] blur-[100px] opacity-20 rounded-full" />
+                            <div className="absolute inset-0 bg-[#a3e635] blur-[100px] opacity-30 rounded-full" />
                             <Image
                                 src="/logo.svg"
                                 alt="Nexon Copilot"
@@ -114,9 +160,9 @@ export function CinematicSequence() {
                                 initial={{ y: "100%" }}
                                 animate={{ y: 0 }}
                                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                                className="text-7xl md:text-9xl font-black tracking-tighter text-white"
+                                className="text-7xl md:text-[8rem] font-black tracking-tighter text-white"
                             >
-                                Nexon <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">Copilot.</span>
+                                Nexon <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Copilot.</span>
                             </motion.h1>
                         </div>
 
@@ -124,27 +170,27 @@ export function CinematicSequence() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 1.2 }}
-                            className="text-2xl md:text-4xl text-neutral-400 font-medium tracking-tight text-center max-w-4xl mb-12"
+                            className="text-2xl md:text-4xl text-[#a3e635] font-medium tracking-tight text-center max-w-4xl mb-12 drop-shadow-[0_0_10px_rgba(163,230,53,0.3)]"
                         >
-                            End-to-end automation. <br className="md:hidden" />From customer acquisition to getting paid.
+                            Stop renting attention. Start owning growth.
                         </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 1.8 }}
-                            className="flex gap-6 items-center"
+                            className="flex flex-col sm:flex-row gap-6 items-center"
                         >
                             <button
                                 onClick={() => window.location.reload()}
-                                className="px-8 py-4 rounded-full border border-white/10 text-white font-semibold hover:bg-white/5 transition-colors flex items-center gap-2"
+                                className="px-8 py-4 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors flex items-center gap-2 text-lg backdrop-blur-md"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
-                                Replay
+                                Replay Video
                             </button>
                             <a
                                 href="https://nexoncopilot.com"
-                                className="px-10 py-4 bg-[#7c3aed] text-white rounded-full font-bold text-lg hover:bg-[#6d28d9] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] hover:-translate-y-1 transition-all flex items-center gap-2"
+                                className="px-10 py-4 bg-[#7c3aed] text-white rounded-full font-bold text-lg hover:bg-[#6d28d9] hover:shadow-[0_0_40px_rgba(124,58,237,0.6)] hover:-translate-y-1 transition-all flex items-center gap-2"
                             >
                                 Enter Platform
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
