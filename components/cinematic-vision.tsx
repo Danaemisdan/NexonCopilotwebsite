@@ -185,13 +185,13 @@ export function CinematicVision() {
                 {currentSlide.type === "flash" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className="absolute flex items-center justify-center w-full z-10 p-8 text-center"
                     >
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white">
+                        <h1 className="text-5xl md:text-8xl font-semibold tracking-tight text-white drop-shadow-md">
                             {currentSlide.text}
                         </h1>
                     </motion.div>
@@ -201,33 +201,32 @@ export function CinematicVision() {
                 {currentSlide.type === "hero" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 0.9, y: 40 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+                        initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute flex flex-col items-center justify-center w-full text-center z-10 p-8"
                     >
-                        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a3e635] via-white to-[#7c3aed] leading-tight mb-6 p-4">
+                        <h1 className="text-6xl md:text-[8rem] font-bold tracking-tighter text-white leading-tight mb-6 p-4 drop-shadow-xl">
                             {currentSlide.text}
                         </h1>
-                        <p className="text-2xl md:text-4xl text-neutral-400 font-medium tracking-tight">
+                        <p className="text-2xl md:text-4xl text-[#a3e635] font-medium tracking-tight">
                             {currentSlide.subtitle}
                         </p>
                     </motion.div>
                 )}
 
-                {/* GLOWING CARDS FOR PILLARS WITH GRAPHICS */}
+                {/* GLOWING CARDS FOR PILLARS WITH GRAPHICS - OpenAI/Apple Style */}
                 {currentSlide.type === "pillar" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 0.8, y: 50, rotateX: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-                        exit={{ opacity: 0, scale: 1.1, filter: "blur(15px)", y: -50 }}
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute flex items-center justify-center w-full max-w-5xl px-4 z-20"
-                        style={{ perspective: "1000px" }}
+                        initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute flex items-center justify-center w-full max-w-6xl px-4 z-20"
                     >
-                        <div className="w-full relative overflow-hidden bg-black/40 backdrop-blur-2xl border border-white/10 md:p-16 p-8 rounded-[2rem] md:rounded-[3rem] shadow-[0_0_80px_rgba(124,58,237,0.15)] flex flex-col md:flex-row items-center gap-12">
+                        <div className="w-full relative flex flex-col md:flex-row items-center gap-12 md:gap-24 p-8 md:p-12 rounded-[2rem] bg-gradient-to-b from-white/[0.03] to-transparent border-t border-white/[0.05] backdrop-blur-3xl shadow-2xl">
 
                             {/* Graphic Side */}
                             <div className="flex-1 w-full flex items-center justify-center min-h-[250px]">
@@ -240,19 +239,18 @@ export function CinematicVision() {
 
                             {/* Text Side */}
                             <motion.div
-                                initial={{ opacity: 0, x: 20 }}
+                                initial={{ opacity: 0, x: 10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.4, duration: 0.6 }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                 className="flex-1 text-center md:text-left"
                             >
-                                <div className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-bold tracking-widest text-[#a3e635] uppercase mb-4">
-                                    The Product
+                                <div className="inline-block px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold tracking-widest text-neutral-400 uppercase mb-6">
+                                    Pillar 0{sequence.findIndex(s => s.id === currentSlide.id) - 4}
                                 </div>
-                                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6">
                                     {currentSlide.title}
                                 </h2>
-                                <div className="h-1 w-16 bg-gradient-to-r from-[#a3e635] to-[#7c3aed] mb-6 rounded-full mx-auto md:mx-0" />
-                                <p className="text-xl md:text-2xl text-neutral-300 font-medium leading-relaxed">
+                                <p className="text-xl md:text-2xl text-neutral-400 font-medium leading-relaxed">
                                     {currentSlide.desc}
                                 </p>
                             </motion.div>
@@ -260,73 +258,77 @@ export function CinematicVision() {
                     </motion.div>
                 )}
 
-                {/* FINAL REVEAL (NEXON COPILOT) */}
+                {/* FINAL REVEAL (NEXON COPILOT) - Splash Screen Style */}
                 {currentSlide.type === "reveal" && (
                     <motion.div
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                        className="absolute flex flex-col items-center justify-center w-full z-30 px-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 flex flex-col items-center justify-center w-full z-30 bg-[#111111]"
                     >
-                        <motion.div
-                            initial={{ rotate: -90, scale: 0 }}
-                            animate={{ rotate: 0, scale: 1 }}
-                            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.5 }}
-                            className="mb-8 relative"
-                        >
-                            <div className="absolute inset-0 bg-[#a3e635] blur-[100px] opacity-30 rounded-full" />
-                            <Image
-                                src="/logo.svg"
-                                alt="Nexon Copilot"
-                                width={180}
-                                height={180}
-                                className="relative z-10 w-24 h-24 md:w-32 md:h-32 drop-shadow-[0_0_25px_rgba(163,230,53,0.5)]"
-                            />
-                        </motion.div>
+                        <div className="flex flex-col items-center justify-center -mt-16">
+                            <div className="flex items-center justify-center overflow-hidden mb-10">
+                                {/* Logo Animation (from Preloader) */}
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0, rotate: -90 }}
+                                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                                    transition={{ duration: 0.8, ease: "backOut", delay: 0.2 }}
+                                >
+                                    <Image
+                                        src="/logo.svg"
+                                        alt="Nexon Copilot Logo"
+                                        width={180}
+                                        height={180}
+                                        priority
+                                        className="w-24 h-24 sm:w-[150px] sm:h-[150px] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                                    />
+                                </motion.div>
 
-                        <div className="overflow-hidden mb-4">
-                            <motion.h1
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                                className="text-6xl md:text-[7rem] font-black tracking-tighter text-white"
+                                {/* Text Reveal Animation (from Preloader) */}
+                                <motion.div
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{ width: "auto", opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <span className="text-6xl md:text-[8rem] font-bold tracking-tight text-white whitespace-nowrap pl-4 sm:pl-8">
+                                        Nexon <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500">Copilot.</span>
+                                    </span>
+                                </motion.div>
+                            </div>
+
+                            <motion.p
+                                initial={{ opacity: 0, filter: "blur(10px)" }}
+                                animate={{ opacity: 1, filter: "blur(0px)" }}
+                                transition={{ duration: 1, delay: 1.5 }}
+                                className="text-2xl md:text-3xl text-[#a3e635] font-semibold tracking-tight text-center max-w-3xl mb-12 px-4 drop-shadow-md"
                             >
-                                Nexon <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Copilot.</span>
-                            </motion.h1>
+                                Stop renting attention. Start owning growth.
+                            </motion.p>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 2.2 }}
+                                className="flex flex-col sm:flex-row gap-6 items-center"
+                            >
+                                <button
+                                    onClick={() => setCurrentIndex(0)}
+                                    className="px-8 py-4 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white/40 transition-all flex items-center gap-2 text-lg backdrop-blur-md"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+                                    Replay Vision
+                                </button>
+                                <a
+                                    href="/waitlist"
+                                    className="px-10 py-4 bg-[#7c3aed] text-white rounded-full font-bold text-lg hover:bg-[#6d28d9] hover:scale-105 hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-all flex items-center gap-2"
+                                >
+                                    Join the Platform
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                                </a>
+                            </motion.div>
                         </div>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 1.2 }}
-                            className="text-xl md:text-3xl text-[#a3e635] font-semibold tracking-tight text-center max-w-3xl mb-10 drop-shadow-[0_0_10px_rgba(163,230,53,0.3)] px-4"
-                        >
-                            Stop renting attention. Start owning growth.
-                        </motion.p>
-
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 1.8 }}
-                            className="flex flex-col sm:flex-row gap-4 items-center"
-                        >
-                            <button
-                                onClick={() => setCurrentIndex(0)}
-                                className="px-6 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2 text-base backdrop-blur-md"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
-                                Replay Vision
-                            </button>
-                            <a
-                                href="/waitlist"
-                                className="px-8 py-3 bg-[#7c3aed] text-white rounded-full font-bold text-base hover:bg-[#6d28d9] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] hover:-translate-y-1 transition-all flex items-center gap-2"
-                            >
-                                Join the Platform
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                            </a>
-                        </motion.div>
-
                     </motion.div>
                 )}
             </AnimatePresence>
