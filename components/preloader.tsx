@@ -36,10 +36,10 @@ export function Preloader() {
                             <Image
                                 src="/logo.svg"
                                 alt="Nexon Copilot Logo"
-                                width={120}
-                                height={120}
+                                width={400}
+                                height={400}
                                 priority
-                                className="w-16 h-16 sm:w-[120px] sm:h-[120px] object-contain"
+                                className="w-48 h-48 sm:w-[300px] sm:h-[300px] object-contain"
                             />
                         </motion.div>
 
